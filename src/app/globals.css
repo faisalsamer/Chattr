@@ -1,26 +1,114 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary Colors */
+  --primary-blue: #3b82f6;
+  --primary-blue-hover: #2563eb;
+  --primary-blue-light: #dbeafe;
+  
+  /* Secondary Colors */
+  --secondary-gray: #f8fafc;
+  --secondary-gray-dark: #f1f5f9;
+  
+  /* Text Colors */
+  --text-primary: #1f2937;
+  --text-secondary: #636975;
+  --text-muted: #9ca3af;
+  --text-white: #ffffff;
+  
+  /* Background Colors */
+  --bg-white: #ffffff;
+  --bg-gray-50: #f9fafb;
+  --bg-gray-100: #f3f4f6;
+  --bg-gray-200: #e5e7eb;
+  --bg-hover-gray: #eeeeee;
+  
+  /* Status Colors */
+  --success-green: #10b981;
+  --success-green-light: #d1fae5;
+  --success-green-text: #065f46;
+  
+  --danger-red: #ef4444;
+  --danger-red-light: #fef2f2;
+  --danger-red-text: #991b1b;
+  
+  --warning-yellow: #f59e0b;
+  --warning-yellow-light: #fef3c7;
+  
+  --info-purple: #8b5cf6;
+  --info-purple-light: #f3e8ff;
+  --info-purple-text: #581c87;
+  
+  /* Online Status */
+  --online-green: #22c55e;
+  
+  /* Border Colors */
+  --border-gray: #e5e7eb;
+  --border-gray-light: #f3f4f6;
+  
+  /* Hover States */
+  --hover-gray: #f9fafb;
+  --hover-blue: #eff6ff;
+  
+  /* Chat Specific */
+  --chat-bubble-sent: #3b82f6;
+  --chat-bubble-received: #f3f4f6;
+  --chat-bubble-sent-text: #ffffff;
+  --chat-bubble-received-text: #1f2937;
+  
+  /* Sidebar */
+  --sidebar-bg: #ffffff;
+  --sidebar-hover: #f8fafc;
+  --sidebar-active: #eff6ff;
+  --sidebar-border: #e5e7eb;
+
+
+  /* Font Families */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;  
+  --font-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
+  
+  /* Font Sizes */
+  --text-xs: 0.75rem;      /* 12px */
+  --text-sm: 0.875rem;     /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg: 1.125rem;     /* 18px */
+  --text-xl: 1.25rem;      /* 20px */
+  --text-2xl: 1.5rem;      /* 24px */
+  --text-3xl: 1.875rem;    /* 30px */
+  
+  /* Font Weights */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  
+  /* Line Heights */
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* globals.css */
+::placeholder {
+  color: var(--text-muted); 
+}
+
+input:focus::placeholder {
+  color: var(--text-secondary)  
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-white);
+  color: var(--text-primary);
+  font-family: var(--font-primary) !important;
+}
+
+h1 {
+  color: var(--text-primary);
+  font-size: 24px;
+  font-weight: var(--font-medium);
 }

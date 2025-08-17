@@ -1,0 +1,44 @@
+.messagerName {
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    line-height: var(--leading-normal);
+}
+
+.messageNumber {
+    color: white;
+    font-size: var(--text-xs);
+    font-weight: var(--font-medium);
+}
+
+.message {
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-normal);
+}
+
+.messageTime {
+    color: var(--text-secondary);
+    font-size: var(--text-xs);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-normal);
+}
+
+.active {
+    font-weight: var(--font-medium);
+    color: var(--primary-blue);
+}
+
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}  
+
+
+.menuText {
+    color: var(--text-primary);
+    font-size: var(--text-base);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-normal);
+}

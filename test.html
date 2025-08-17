@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Flex Dynamic Width Truncate</title>
+<style>
+  body {
+    margin: 20px;
+  }
+  .container {
+    display: flex;
+    border: 1px solid #333;
+    padding: 10px;
+    /* No fixed width, container grows with viewport */
+    max-width: 100%;
+  }
+  .flex-grow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="flex-grow" style="flex: 1">
+    This text will stretch and shrink with the container, truncating with ellipsis if too long.
+    This text will stretch and shrink with the container, truncating with ellipsis if too long.
+  </div>
+  <div style="flex: 1 ">
+  </div>
+</div>
+
+</body>
+</html>
