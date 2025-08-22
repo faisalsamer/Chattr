@@ -4,15 +4,19 @@ import { type LucideIcon, Menu, User, UserPlus, Users, Bell } from 'lucide-react
 import { useClickAway } from 'react-use';
 import animationStyles from '../styles/animations.module.css';
 import fontStyles from '../styles/fonts.module.css';
+import { handleProfileClick } from '@/util/MenuFunctions';
+
 const Sidemenu = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false); // To 
+  const [isMenuHidden, setIsMenuHidden] = useState<boolean>(false); // To use hidden when navigation
   const menuRef = useRef<HTMLInputElement>(null);
   const [ripples, setRipples] = useState<{ x: number; y: number; size: number; id: number }[]>([])
   const timeouts = useRef<ReturnType<typeof setTimeout>[]>([]);
-  const menuItems: { icon: LucideIcon; label: string }[] = [
+  const menuItems: { icon: LucideIcon; label: string, onClick?: () => void }[] = [
     {
       icon: User,
-      label: 'Profile'
+      label: 'Profile',
+      onClick: handleProfileClick,
     },
     {
       icon: UserPlus,
@@ -51,7 +55,11 @@ const Sidemenu = () => {
     return () => {
       timeouts.current.forEach(clearTimeout);
     }
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    setIsMenuHidden(false);
+  }, [isMenuHidden]);
 
   useClickAway(menuRef, () => {
     setIsMenuOpen(false);
@@ -62,6 +70,11 @@ const Sidemenu = () => {
       <nav className='w-60'>
         {menuItems.map((item, index) => (
           <ul key={index}
+            onClick={() => {
+              item.onClick?.();
+              setIsMenuHidden(true);
+              setIsMenuOpen(false);
+            }}
             className='hover:bg-[rgba(126,126,126,0.1)] active:scale-[98%] active:transition-all active:duration-100
                       flex items-center gap-3 
                        p-2 m-1 cursor-pointer rounded-lg'>
@@ -89,7 +102,7 @@ const Sidemenu = () => {
         {ripples.map(r => (
           <span
             key={r.id}
-            className={`absolute rounded-full bg-black/20 ${animationStyles['animate-ripple']}`}
+            className={`absolute rounded-full bg-black/10 ${animationStyles['animate-ripple']}`}
             style={{
               left: r.x,
               top: r.y,
@@ -100,9 +113,9 @@ const Sidemenu = () => {
         ))}
       </button>
 
-      <div ref={menuRef} className={`${isMenuOpen ? 'scale-100 opacity-100' : 'scale-90 opacity-0 pointer-events-none'}
-        
-        absolute left-1/2 top-[100%] z-1000
+      <div ref={menuRef} className={`${isMenuHidden && 'hidden'}
+      ${isMenuOpen ? 'scale-100 opacity-100' : 'scale-80 opacity-0 pointer-events-none duration-50'} ease-out
+        absolute left-0 top-[120%] z-1000
         rounded-xl bg-white/65
         origin-top-left transition-all duration-200
         backdrop-blur-md shadow-lg border border-white/20
