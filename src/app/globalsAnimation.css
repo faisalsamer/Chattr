@@ -1,15 +1,16 @@
-.chatsSection {
+
+#chatsSection {
     transform: scale(1);
     opacity: 1;
     transition: transform 0.2s ease-out, opacity 0.2s ease-in;
 }
 
-.chatsSection.out {
+#chatsSection.out {
     transform: scale(0.8);
     opacity: 0.9;
 }
 
-.profileSection {
+#profileSection {
     position: absolute;
     top: 0;
     right: 0;
@@ -20,6 +21,17 @@
     transition: transform 0.1s ease-in;
 }
 
-.profileSection.in {
+#profileSection.in {
     transform: translateX(0%);
+}
+
+.animate-ripple {
+    animation: ripple 0.4s linear;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
 }

@@ -2,16 +2,18 @@
 import { type JSX, useState, useRef, useEffect } from 'react'
 import { type LucideIcon, Menu, User, UserPlus, Users, Bell } from 'lucide-react';
 import { useClickAway } from 'react-use';
-import animationStyles from '../styles/animations.module.css';
 import fontStyles from '../styles/fonts.module.css';
 import { handleProfileClick } from '@/util/MenuFunctions';
+import { useRipples } from '@/hooks/useRipples';
+import RippleAnimation from './RippleAnimation';
+import Button from './Button';
 
 const Sidemenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false); // To 
   const [isMenuHidden, setIsMenuHidden] = useState<boolean>(false); // To use hidden when navigation
   const menuRef = useRef<HTMLInputElement>(null);
-  const [ripples, setRipples] = useState<{ x: number; y: number; size: number; id: number }[]>([])
-  const timeouts = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const { ripples, createRipple } = useRipples();
+  
   const menuItems: { icon: LucideIcon; label: string, onClick?: () => void }[] = [
     {
       icon: User,
@@ -31,31 +33,6 @@ const Sidemenu = () => {
       label: 'Notifications'
     }
   ];
-
-  const createRipple = (e: React.MouseEvent<HTMLButtonElement>, isAll: boolean) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    const size = isAll ?
-      Math.max(rect.width, rect.height)
-      :
-      Math.max(rect.width, rect.height) / 2
-    const x = e.clientX - rect.left - size / 2
-    const y = e.clientY - rect.top - size / 2
-    const newRipple = { x, y, size, id: Date.now() }
-
-    setRipples(prev => [...prev, newRipple])
-
-    const timeoutId = setTimeout(() => {
-      setRipples(prev => prev.filter(r => r.id !== newRipple.id));
-    }, 400);  // match duration
-
-    timeouts.current.push(timeoutId);
-  }
-
-  useEffect(() => {
-    return () => {
-      timeouts.current.forEach(clearTimeout);
-    }
-  }, []);
 
   useEffect(() => {
     setIsMenuHidden(false);
@@ -86,32 +63,20 @@ const Sidemenu = () => {
       </nav>
     )
   };
+
   return (
     <div ref={menuRef} className='relative h-full'>
-      <button
+      <Button
         onClick={(e) => {
           !isMenuOpen && createRipple(e, false)
           setIsMenuOpen(prev => !prev)
         }}
         className={`
-            ${isMenuOpen ? 'bg-[var(--bg-hover-gray)]' : 'cursor-pointer'} hover:bg-[var(--bg-hover-gray)] 
-            flex items-center justify-center outline-none
-            h-full aspect-square rounded-full relative overflow-hidden`}
+            ${isMenuOpen ? '!bg-[var(--bg-hover-gray)] !cursor-default' : '!cursor-pointer'}`}
       >
         <Menu />
-        {ripples.map(r => (
-          <span
-            key={r.id}
-            className={`absolute rounded-full bg-black/10 ${animationStyles['animate-ripple']}`}
-            style={{
-              left: r.x,
-              top: r.y,
-              width: r.size,
-              height: r.size
-            }}
-          />
-        ))}
-      </button>
+        <RippleAnimation ripples={ripples} />
+      </Button>
 
       <div ref={menuRef} className={`${isMenuHidden && 'hidden'}
       ${isMenuOpen ? 'scale-100 opacity-100' : 'scale-80 opacity-0 pointer-events-none duration-50'} ease-out

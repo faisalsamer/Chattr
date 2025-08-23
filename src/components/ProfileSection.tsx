@@ -1,12 +1,16 @@
-'use client';
 import React from 'react'
-import { handleProfileClick } from '@/util/MenuFunctions';
+import BackButton from './ui/BackButton';
+import LogoutButton from './ui/LogoutButton';
 
 const ProfileSection: React.FC = () => {
     return (
-        <div id='profileSection' className='profileSection'>
-            <button onClick={handleProfileClick} className='border p-2 cursor-pointer'>Back</button>
-            Profile
+        <div id='profileSection' className='profileSection p-3 px-3'>
+            <div className='flex justify-between items-center'>
+                <BackButton />
+                <div className='flex items-center '>
+                    <LogoutButton />
+                </div>
+            </div>
         </div>
     )
 }
