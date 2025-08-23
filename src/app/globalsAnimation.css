@@ -1,0 +1,25 @@
+.chatsSection {
+    transform: scale(1);
+    opacity: 1;
+    transition: transform 0.2s ease-out, opacity 0.2s ease-in;
+}
+
+.chatsSection.out {
+    transform: scale(0.8);
+    opacity: 0.9;
+}
+
+.profileSection {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    transform: translateX(100%);
+    background-color: white;
+    transition: transform 0.1s ease-in;
+}
+
+.profileSection.in {
+    transform: translateX(0%);
+}

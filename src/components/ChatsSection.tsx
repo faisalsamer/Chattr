@@ -8,7 +8,7 @@ type Props = {
 
 const ChatsSection: React.FC<Props>  = ({ selectedChat }) => {
   return (
-    <div className='w-full'>
+    <div id='chatsSection' className={`relative chatsSection`}>
         <ChatsHeader />
       <div>
         <ChatsMessageList selectedChat={selectedChat} />
