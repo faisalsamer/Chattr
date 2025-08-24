@@ -7,3 +7,7 @@ export type Ripples = {
     size: number;
     id: number;
 };
+
+export type SearchParams = {
+    searchParams: Promise<{ [key: string]: string | undefined }>
+};

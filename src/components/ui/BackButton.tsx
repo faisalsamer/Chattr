@@ -7,7 +7,7 @@ import Button from './Button';
 const BackButton: React.FC = () => {
     return (
         <Button onClick={handleProfileClick}>
-            <ArrowLeft color='#787878' />
+            <ArrowLeft color='var(--icon-primary)' />
         </Button>
     )
 }

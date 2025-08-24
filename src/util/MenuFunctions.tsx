@@ -1,12 +1,9 @@
-import { profile } from "console";
-
 export const handleProfileClick = (): void => {
-  let visible = false;
   // Chats Section Animation
   const chatsSection = document.getElementById('chatsSection');
   if (chatsSection) {
-    visible = !chatsSection.classList.contains('out');
-    chatsSection.style.transitionDelay = visible ? '0s' : '0s';
+    const Out = !chatsSection.classList.contains('out');
+    chatsSection.style.transitionDelay = Out ? '0s' : '0s';
     // Toggle the 'animate' class on the SSR element
     chatsSection.classList.toggle('out');
   }
@@ -14,9 +11,9 @@ export const handleProfileClick = (): void => {
   // Profile Section Animation
   const profileSection = document.getElementById('profileSection');
   if (profileSection) {
-    visible = profileSection.classList.contains('in');
-    profileSection.style.transitionDelay = visible ? '0s' : '0.1s';
-    if (visible) {
+    const In = profileSection.classList.contains('in');
+    profileSection.style.transitionDelay = In ? '0s' : '0.1s';
+    if (In) {
       setTimeout(() => {
         profileSection.style.zIndex = '-1000';
       }, 300);

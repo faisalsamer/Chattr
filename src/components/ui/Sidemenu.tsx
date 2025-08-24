@@ -52,7 +52,7 @@ const Sidemenu = () => {
               setIsMenuHidden(true);
               setIsMenuOpen(false);
             }}
-            className='hover:bg-[rgba(126,126,126,0.1)] active:scale-[98%] active:transition-all active:duration-100
+            className='hover:bg-[var(--bg-hover-gray)] active:scale-[98%] active:transition-all active:duration-100
                       flex items-center gap-3 
                        p-2 m-1 cursor-pointer rounded-lg'>
             <item.icon height={18} />

@@ -19,12 +19,15 @@
   --text-muted: #9ca3af;
   --text-white: #ffffff;
 
+  /* Icon Colors */
+  --icon-primary: #787878;
+
   /* Background Colors */
   --bg-white: #ffffff;
   --bg-gray-50: #f9fafb;
   --bg-gray-100: #f3f4f6;
   --bg-gray-200: #e5e7eb;
-  --bg-hover-gray: #eeeeee;
+  --bg-hover-gray: rgba(126,126,126,0.1);
 
   /* Status Colors */
   --success-green: #10b981;
@@ -140,8 +143,8 @@ body {
 
 h1 {
   color: var(--text-primary);
-  font-size: 24px;
-  font-weight: var(--font-medium);
+  font-size: 22px;
+  font-weight: var(--font-bold);
 }
 
 @theme inline {
@@ -224,3 +227,36 @@ h1 {
     @apply bg-background text-foreground;
   }
 }
+
+
+
+.scrollable {
+  overflow-y: scroll; /* always show scrollbar */
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(81, 81, 81, 0) transparent; /* faint by default */
+  transition: scrollbar-color 0.3s;
+}
+
+/* WebKit browsers */
+.scrollable::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background-color: rgba(81, 81, 81, 0); /* faint */
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.scrollable:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(81, 81, 81, 0.3); /* fully visible on hover */
+}
+
+/* Firefox hover */
+.scrollable:hover {
+  scrollbar-color: rgba(81, 81, 81, 0.3) transparent;
+}
+
+
+
+

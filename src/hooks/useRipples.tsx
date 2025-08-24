@@ -16,7 +16,7 @@ export const useRipples = (): UseRipples => {
         const size = isAll ?
             Math.max(rect.width, rect.height)
             :
-            Math.max(rect.width, rect.height) / 2
+            Math.max(rect.width, rect.height) / 13
         const x = e.clientX - rect.left - size / 2
         const y = e.clientY - rect.top - size / 2
         const newRipple = { x, y, size, id: Date.now() }
@@ -25,7 +25,7 @@ export const useRipples = (): UseRipples => {
 
         const timeoutId = setTimeout(() => {
             setRipples(prev => prev.filter(r => r.id !== newRipple.id));
-        }, 400);  // match duration
+        }, 470);  // match duration
 
         timeouts.current.push(timeoutId);
     }

@@ -27,7 +27,7 @@ const LogoutButton: React.FC = () => {
                     setIsDialogOpen(true)
                 }}
             >
-                <LogOut color="#787878" />
+                <LogOut size={22} color="var(--icon-primary)" />
                 <RippleAnimation ripples={ripples} />
             </Button>
 
@@ -39,11 +39,13 @@ const LogoutButton: React.FC = () => {
                     </DialogHeader>
                     <p>Are you sure you want to log out?</p>
                     <DialogFooter>
-                        <DialogClose asChild>
-                            <ShadButton variant={'ghost'} className='text-blue-500 hover:text-blue-500 hover:bg-blue-50 active:scale-95'>Cancel</ShadButton>
-                        </DialogClose>
-                        <ShadButton variant={'ghost'} className='text-red-500 hover:text-red-500 hover:bg-red-50 active:scale-95' 
-                        onClick={() => alert('Logged out!')}>Logout</ShadButton>
+                        <div className='flex justify-center items-center'>
+                            <DialogClose asChild>
+                                <ShadButton variant={'ghost'} className='text-blue-500 hover:text-blue-500 hover:bg-blue-50 font-bold text-md outline-none active:scale-95'>Cancel</ShadButton>
+                            </DialogClose>
+                            <ShadButton variant={'ghost'} className='text-red-500 hover:text-red-500 hover:bg-red-50 font-bold text-md outline-none active:scale-95'
+                            onClick={() => alert('Logged out!')}>Logout</ShadButton>
+                        </div>
                     </DialogFooter>
                 </DialogContent>
             </Dialog>
