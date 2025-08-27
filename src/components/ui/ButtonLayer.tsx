@@ -1,14 +1,16 @@
 'use client';
 import React from 'react'
 
-type ButtonLayerProps = {
+type ButtonLayerProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
     children?: React.ReactNode;
     className?: string;
 }
 
-const ButtonLayer: React.FC<ButtonLayerProps> = ({ children, className = '' }) => {
+const ButtonLayer: React.FC<ButtonLayerProps> = (props) => {
+    const { children, className = '', ...rest } = props;
     return (
-        <button className={`absolute inset-0
+        <button {...rest}
+            className={`absolute inset-0
         flex items-center justify-center cursor-pointer ${className}`}>
             {children}
         </button>

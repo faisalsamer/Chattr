@@ -1,6 +1,5 @@
 import React, { type JSX } from 'react';
 import { Check } from 'lucide-react';
-import fontStyle from './styles/fonts.module.css';
 import { messages, type Message } from '../util/data';
 import Link from 'next/link';
 type Props = {
@@ -22,20 +21,20 @@ const ChatsMessageList: React.FC<Props> = ({ selectedChat }) => {
                 </div>
                 <div className='flex flex-col h-full w-full min-w-0'>
                     <div className='flex justify-between items-center h-full'>
-                        <span className={`${fontStyle.messagerName}`}>{message.name}</span>
-                        <span className={`${fontStyle.messageTime} ${message.unreadNo > 0 ? fontStyle.active : ''}`}>{message.time}</span>
+                        <span className={`messagerName`}>{message.name}</span>
+                        <span className={`messageTime ${message.unreadNo > 0 ? 'active' : ''}`}>{message.time}</span>
                     </div>
                     <div className='flex justify-between items-center gap-1 h-full'>
                         <div className='flex gap-1 items-center min-w-0'>
                             <Check width={15} className={`${!message.received ? 'hidden' : ''} text-[var(--text-secondary)]`} />
-                            <span className={`${fontStyle.message} ${fontStyle.truncate} !font-[var(--font-primary)]`}> {message.latestMessage}</span>
+                            <span className={`message truncate !font-[var(--font-primary)]`}> {message.latestMessage}</span>
                         </div>
                         <div
                             className={`${message.unreadNo === 0 ? 'hidden' : ''}
                                 bg-[var(--primary-blue)]
                                 flex items-center justify-center
                                 px-[6px] rounded-full`}>
-                            <span className={fontStyle.messageNumber}>{message.unreadNo}</span>
+                            <span className='messageNumber'>{message.unreadNo}</span>
                         </div>
                     </div>
                 </div>

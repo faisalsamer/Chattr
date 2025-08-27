@@ -1,10 +1,9 @@
 'use client';
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import BackButton from './ui/BackButton';
 import Image from 'next/image';
-import { Camera } from 'lucide-react';
 import ButtonLayer from './ui/ButtonLayer';
-import { Check } from 'lucide-react';
+import { Check, SquarePen } from 'lucide-react';
 import Input from './ui/Input';
 import ProfilePhotoEditor from './ProfilePhotoEditor';
 
@@ -12,6 +11,8 @@ import ProfilePhotoEditor from './ProfilePhotoEditor';
 
 const EditProfileSection: React.FC = () => {
   const [isButtonVisible, setIsButtonVisible] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   const inputDescriptionStyle = 'text-xs text-gray-400 mt-3';
   const defaultData = {
     firstName: 'Faisal Samer Mohammed Hael',
@@ -24,7 +25,7 @@ const EditProfileSection: React.FC = () => {
     setIsButtonVisible(true);
   }
 
-  const handleSubmit = (e:React.FormEvent<HTMLFormElement>):void => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
   }
 
@@ -40,8 +41,9 @@ const EditProfileSection: React.FC = () => {
           <div className='relative aspect-[1/1] h-30 overflow-hidden rounded-full'>
             <Image src={'/FaisalPhoto.jpg'} fill className='object-contain' alt='Profile Photo' />
             <ButtonLayer
+              onMouseDown={() => setIsModalOpen(true)}
               className='bg-black/50 hover:scale-120 duration-200 rounded-full'>
-              <Camera color='white' size={35} />
+              <SquarePen color='white' size={35} />
             </ButtonLayer>
           </div>
         </div>
@@ -71,6 +73,8 @@ const EditProfileSection: React.FC = () => {
           </button>
         </div>
       </form>
+
+      <ProfilePhotoEditor isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   )
 }
