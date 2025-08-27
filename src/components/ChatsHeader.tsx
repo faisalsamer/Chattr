@@ -7,7 +7,7 @@ const ChatsHeader: React.FC = () => {
 
     return (
         <div className='bg-[var(--bg-gray-50)] p-3 flex flex-col gap-3 border-b border-[var(--border-gray)]'>
-            <div className='flex items-center gap-4 h-9'>
+            <div className='flex items-end gap-4 h-9'>
                 <Sidemenu />
                 <h1>Chats</h1>
             </div>

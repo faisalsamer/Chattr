@@ -22,7 +22,11 @@ const SearchInput: React.FC<SearchInputProps> = ({ icon: Icon, placeholder, clas
             <Icon className={iconstyle} />
             <input
                 type='text'
+                id='asfsafdsafsa'
+                name='asfsafdsafsa'
                 value={searchInput}
+                autoComplete="off"
+                spellCheck="false"
                 onFocus={() => setIsFocus(true)}
                 onBlur={() => setIsFocus(false)}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchInput(e.target.value)}

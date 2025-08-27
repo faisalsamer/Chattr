@@ -10,13 +10,15 @@ import Button from './Button';
 import MenuContainer from './MenuContainer';
 import PortableDialog from './PortableDialog';
 import AddFriendSection from '../AddFriendSection';
+import FriendRequests from '../FriendRequests';
 
 const Sidemenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false); // To 
   const [isMenuHidden, setIsMenuHidden] = useState<boolean>(false); // To use hidden when navigation
   const menuRef = useRef<HTMLInputElement>(null);
   const { ripples, createRipple } = useRipples();
-  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+  const [isAddFriendDialogOpen, setIsAddFriendDialogOpen] = useState<boolean>(false);
+  const [isFriendRequestsDialogOpen, setIsFriendRequestsDialogOpen] = useState<boolean>(false);
 
   const menuItems: { icon: LucideIcon; label: string, onClick?: () => void }[] = [
     {
@@ -27,11 +29,12 @@ const Sidemenu = () => {
     {
       icon: UserPlus,
       label: 'Add Friends',
-      onClick: () => setIsDialogOpen(true)
+      onClick: () => setIsAddFriendDialogOpen(true)
     },
     {
       icon: Users,
-      label: 'Friend Requests'
+      label: 'Friend Requests',
+      onClick: () => setIsFriendRequestsDialogOpen(true)
     },
     {
       icon: Bell,
@@ -88,8 +91,12 @@ const Sidemenu = () => {
         {menuList()}
       </MenuContainer>
 
-      <PortableDialog title='Add a friend' isOpen={isDialogOpen} setIsOpen={setIsDialogOpen} >
+      <PortableDialog title='Add a friend' isOpen={isAddFriendDialogOpen} setIsOpen={setIsAddFriendDialogOpen} >
         <AddFriendSection />
+      </PortableDialog>
+
+      <PortableDialog title='Friend requests' isOpen={isFriendRequestsDialogOpen} setIsOpen={setIsFriendRequestsDialogOpen} >
+        <FriendRequests />
       </PortableDialog>
     </div>
   )
