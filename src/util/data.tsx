@@ -8,6 +8,7 @@ export type Message = {
     image: string | null,
 };
 
+
 export const messages: Message[] = [
     {
         id: 1,
