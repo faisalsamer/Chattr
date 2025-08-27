@@ -1,5 +1,7 @@
+'use client';
 import Sidemenu from "./ui/Sidemenu";
 import SearchInput from "./ui/SearchInput";
+import { Search } from "lucide-react";
 
 const ChatsHeader: React.FC = () => {
 
@@ -9,7 +11,7 @@ const ChatsHeader: React.FC = () => {
                 <Sidemenu />
                 <h1>Chats</h1>
             </div>
-            <SearchInput />
+            <SearchInput icon={Search} placeholder='Search users' />
         </div>
     )
 }

@@ -49,7 +49,7 @@ const Input: React.FC<InputProps> = (props) => {
                 value={input} onChange={handleInput} autoComplete="off"
                 onFocus={() => setIsFocus(true)} onBlur={() => setIsFocus(false)} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}
                 className={`relative ring-1 ring-gray-300 
-            w-full h-10 px-5 text-sm
+            w-full h-10 px-5 text-sm caret-[var(--primary-blue)]
             focus:ring-2 focus:ring-[var(--primary-blue)] focus:duration-0
             hover:duration-300 hover:ring-[var(--primary-blue)]
             outline-none rounded-md ${className}`} />

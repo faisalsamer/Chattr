@@ -7,12 +7,16 @@ import { handleProfileClick } from '@/util/NavigationFunctions';
 import { useRipples } from '@/hooks/useRipples';
 import RippleAnimation from './RippleAnimation';
 import Button from './Button';
+import MenuContainer from './MenuContainer';
+import PortableDialog from './PortableDialog';
+import AddFriendSection from '../AddFriendSection';
 
 const Sidemenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false); // To 
   const [isMenuHidden, setIsMenuHidden] = useState<boolean>(false); // To use hidden when navigation
   const menuRef = useRef<HTMLInputElement>(null);
   const { ripples, createRipple } = useRipples();
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
   const menuItems: { icon: LucideIcon; label: string, onClick?: () => void }[] = [
     {
@@ -22,7 +26,8 @@ const Sidemenu = () => {
     },
     {
       icon: UserPlus,
-      label: 'Add Friends'
+      label: 'Add Friends',
+      onClick: () => setIsDialogOpen(true)
     },
     {
       icon: Users,
@@ -79,15 +84,13 @@ const Sidemenu = () => {
         <RippleAnimation ripples={ripples} />
       </Button>
 
-      <div ref={menuRef} className={`${isMenuHidden && 'hidden'}
-      ${isMenuOpen ? 'scale-100 opacity-100' : 'scale-80 opacity-0 pointer-events-none duration-50'} ease-out
-        absolute left-0 top-[120%] z-1000
-        rounded-xl bg-white/65
-        origin-top-left transition-all duration-200
-        backdrop-blur-md shadow-lg border border-white/20
-        py-2 animate-fade-in select-none`}>
+      <MenuContainer ref={menuRef} isMenuHidden={isMenuHidden} isMenuOpen={isMenuOpen}>
         {menuList()}
-      </div>
+      </MenuContainer>
+
+      <PortableDialog title='Add a friend' isOpen={isDialogOpen} setIsOpen={setIsDialogOpen} >
+        <AddFriendSection />
+      </PortableDialog>
     </div>
   )
 }

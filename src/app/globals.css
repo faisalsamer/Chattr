@@ -258,6 +258,34 @@ h1 {
   scrollbar-color: rgba(81, 81, 81, 0.3) transparent;
 }
 
+
+.scrollableSecondary {
+  overflow-y: scroll; /* always show scrollbar */
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(81, 81, 81, 0) transparent; /* faint by default */
+  transition: scrollbar-color 0.3s;
+}
+
+/* WebKit browsers */
+.scrollableSecondary::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollableSecondary::-webkit-scrollbar-thumb {
+  background-color: rgba(81, 81, 81, 0); /* faint */
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.scrollableSecondary:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(81, 81, 81, 0.444); /* fully visible on hover */
+}
+
+/* Firefox hover */
+.scrollableSecondary:hover {
+  scrollbar-color: rgba(81, 81, 81, 0.444) transparent;
+}
+
 .section {
   position: absolute;
   top: 0;
@@ -265,4 +293,50 @@ h1 {
   height: 100%;
   width: 100%;
   background-color: white;
+}
+
+
+.messagerName {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-normal);
+}
+
+.messageNumber {
+  color: white;
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+}
+
+.message {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-normal);
+}
+
+.messageTime {
+  color: var(--text-secondary);
+  font-size: var(--text-xs);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-normal);
+}
+
+.active {
+  font-weight: var(--font-medium);
+  color: var(--primary-blue);
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}  
+
+
+.menuText {
+  color: var(--text-primary);
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-normal);
 }

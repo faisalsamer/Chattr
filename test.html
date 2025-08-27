@@ -1,38 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Flex Dynamic Width Truncate</title>
-<style>
-  body {
-    margin: 20px;
-  }
-  .container {
-    display: flex;
-    border: 1px solid #333;
-    padding: 10px;
-    /* No fixed width, container grows with viewport */
-    max-width: 100%;
-  }
-  .flex-grow {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-</style>
+  <meta charset="UTF-8">
+  <title>Zoom & Drag Image</title>
+  <style>
+    body, html {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #111;
+    }
+    .viewer {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+      cursor: grab;
+    }
+    .viewer:active {
+      cursor: grabbing;
+    }
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      transform-origin: center center;
+      transition: transform 0.05s linear;
+    }
+  </style>
 </head>
 <body>
-
-<div class="container">
-
-  <div class="flex-grow" style="flex: 1">
-    This text will stretch and shrink with the container, truncating with ellipsis if too long.
-    This text will stretch and shrink with the container, truncating with ellipsis if too long.
+  <div class="viewer">
+    <img id="zoom-img" src="https://tse3.mm.bing.net/th/id/OIP.GA5Ngsj-q3zl9Te61M-5HQHaEI?r=0&cb=thfc1&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Zoomable">
   </div>
-  <div style="flex: 1 ">
-  </div>
-</div>
 
+  <script>
+    const img = document.getElementById('zoom-img');
+    let scale = 1, posX = 0, posY = 0;
+    let isDragging = false, startX, startY;
+
+    // Zoom
+    document.addEventListener('wheel', e => {
+      e.preventDefault();
+      scale += e.deltaY * -0.001;
+      scale = Math.min(Math.max(0.5, scale), 5); // limit zoom
+      updateTransform();
+    }, { passive: false });
+
+    // Drag
+    img.parentElement.addEventListener('mousedown', e => {
+      isDragging = true;
+      startX = e.clientX - posX;
+      startY = e.clientY - posY;
+    });
+    document.addEventListener('mouseup', () => isDragging = false);
+    document.addEventListener('mousemove', e => {
+      if (!isDragging) return;
+      posX = e.clientX - startX;
+      posY = e.clientY - startY;
+      updateTransform();
+    });
+
+    // Touch support
+    img.parentElement.addEventListener('touchstart', e => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        startX = e.touches[0].clientX - posX;
+        startY = e.touches[0].clientY - posY;
+      }
+    });
+    img.parentElement.addEventListener('touchend', () => isDragging = false);
+    img.parentElement.addEventListener('touchmove', e => {
+      if (!isDragging || e.touches.length !== 1) return;
+      posX = e.touches[0].clientX - startX;
+      posY = e.touches[0].clientY - startY;
+      updateTransform();
+    });
+
+    function updateTransform() {
+      img.style.transform = `translate(calc(-50% + ${posX}px), calc(-50% + ${posY}px)) scale(${scale})`;
+    }
+  </script>
 </body>
 </html>
