@@ -3,7 +3,7 @@ import { type JSX, useState, useRef, useEffect } from 'react'
 import { type LucideIcon, Menu, User, UserPlus, Users, Bell } from 'lucide-react';
 import { useClickAway } from 'react-use';
 import fontStyles from '../styles/fonts.module.css';
-import { handleProfileClick } from '@/util/MenuFunctions';
+import { handleProfileClick } from '@/util/NavigationFunctions';
 import { useRipples } from '@/hooks/useRipples';
 import RippleAnimation from './RippleAnimation';
 import Button from './Button';
@@ -13,7 +13,7 @@ const Sidemenu = () => {
   const [isMenuHidden, setIsMenuHidden] = useState<boolean>(false); // To use hidden when navigation
   const menuRef = useRef<HTMLInputElement>(null);
   const { ripples, createRipple } = useRipples();
-  
+
   const menuItems: { icon: LucideIcon; label: string, onClick?: () => void }[] = [
     {
       icon: User,
@@ -73,6 +73,7 @@ const Sidemenu = () => {
         }}
         className={`
             ${isMenuOpen ? '!bg-[var(--bg-hover-gray)] !cursor-default' : '!cursor-pointer'}`}
+        isUseRipple={false}
       >
         <Menu />
         <RippleAnimation ripples={ripples} />

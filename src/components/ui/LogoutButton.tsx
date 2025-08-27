@@ -1,9 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import Button from './Button'
-import { useRipples } from '@/hooks/useRipples'
 import { LogOut } from 'lucide-react'
-import RippleAnimation from './RippleAnimation'
 import {
     Dialog,
     DialogContent,
@@ -15,20 +13,17 @@ import {
 import { Button as ShadButton } from './shadcn/button'
 
 const LogoutButton: React.FC = () => {
-    const { ripples, createRipple } = useRipples()
     const [isDialogOpen, setIsDialogOpen] = useState(false)
 
     return (
         <>
             {/* Your button that triggers ripple AND opens dialog */}
             <Button
-                onClick={(e) => {
-                    createRipple(e, false)
-                    setIsDialogOpen(true)
+                onClick={() => {
+                    setIsDialogOpen(true);
                 }}
             >
                 <LogOut size={22} color="var(--icon-primary)" />
-                <RippleAnimation ripples={ripples} />
             </Button>
 
             {/* Dialog */}
@@ -41,9 +36,9 @@ const LogoutButton: React.FC = () => {
                     <DialogFooter>
                         <div className='flex justify-center items-center'>
                             <DialogClose asChild>
-                                <ShadButton variant={'ghost'} className='text-blue-500 hover:text-blue-500 hover:bg-blue-50 font-bold text-md outline-none active:scale-95'>Cancel</ShadButton>
+                                <ShadButton variant={'ghost'} className='text-blue-500 hover:text-blue-500 hover:bg-blue-50 font-bold text-md outline-none button-press'>Cancel</ShadButton>
                             </DialogClose>
-                            <ShadButton variant={'ghost'} className='text-red-500 hover:text-red-500 hover:bg-red-50 font-bold text-md outline-none active:scale-95'
+                            <ShadButton variant={'ghost'} className='text-red-500 hover:text-red-500 hover:bg-red-50 font-bold text-md outline-none button-press'
                             onClick={() => alert('Logged out!')}>Logout</ShadButton>
                         </div>
                     </DialogFooter>

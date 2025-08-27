@@ -44,7 +44,7 @@ const ChatsMessageList: React.FC<Props> = ({ selectedChat }) => {
     }
 
     return (
-        <div className='flex flex-col gap-3 p-5 px-2 pt-2'>
+        <div className='flex flex-col gap-3 p-5 pl-2 pr-1 pt-2'>
             {messages.map(message => (
                 <React.Fragment key={message.id}>
                     {messageContainer(message)}

@@ -5,23 +5,29 @@
     transition: transform 0.2s ease-out, opacity 0.2s ease-in;
 }
 
-#chatsSection.out {
+#chatsSection.slide-out {
     transform: scale(0.8);
-    opacity: 0.9;
 }
 
 #profileSection {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
     transform: translateX(100%);
-    background-color: white;
     transition: transform 0.1s ease-in;
 }
 
-#profileSection.in {
+#profileSection.slide-in {
+    transform: translateX(0%);
+}
+
+#profileSection.slide-out {
+    transform: scale(0.8);
+}
+
+#editProfileSection {
+    transform: translateX(100%);
+    transition: transform 0.15s ease-in;
+}
+
+#editProfileSection.slide-in {
     transform: translateX(0%);
 }
 
@@ -33,5 +39,21 @@
     to {
         transform: scale(15);
         opacity: 0.01;
+    }
+}
+
+.button-press:active {
+    animation: buttonPress 150ms forwards;
+}
+
+@keyframes buttonPress {
+    0% {
+        transform: scale(1);
+    }
+    80% {
+        transform: scale(0.90);
+    }
+    100% {
+        transform: scale(0.93);
     }
 }

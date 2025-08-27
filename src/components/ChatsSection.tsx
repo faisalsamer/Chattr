@@ -6,11 +6,11 @@ type Props = {
   selectedChat?: string;
 }
 
-const ChatsSection: React.FC<Props>  = ({ selectedChat }) => {
+const ChatsSection: React.FC<Props> = ({ selectedChat }) => {
   return (
-    <div id='chatsSection' className={`relative chatsSection`}>
-        <ChatsHeader />
-      <div>
+    <div id='chatsSection' className={`section !relative flex flex-col`}>
+      <ChatsHeader />
+      <div className='flex-1 overflow-y-scroll scrollable'>
         <ChatsMessageList selectedChat={selectedChat} />
       </div>
     </div>

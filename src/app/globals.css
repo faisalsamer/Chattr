@@ -143,8 +143,9 @@ body {
 
 h1 {
   color: var(--text-primary);
-  font-size: 22px;
+  font-size: 1.3rem;
   font-weight: var(--font-bold);
+  user-select: none;
 }
 
 @theme inline {
@@ -257,6 +258,11 @@ h1 {
   scrollbar-color: rgba(81, 81, 81, 0.3) transparent;
 }
 
-
-
-
+.section {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+}

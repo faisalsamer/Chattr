@@ -28,11 +28,11 @@ const ProfileSection: React.FC = () => {
     ]
 
     return (
-        <div id='profileSection' className='flex flex-col !h-screen border'>
-            <div className='flex justify-between items-center p-3 px-3'>
-                <div className='flex items-center gap-2'>
+        <div id='profileSection' className='section flex flex-col !h-screen'>
+            <div className='flex justify-between items-center p-3'>
+                <div className='flex items-center gap-4'>
                     <BackButton />
-                    <h1 className='select-none'>Profile</h1>
+                    <h1>Profile</h1>
                 </div>
                 <div className='flex items-center lg:gap-1'>
                     <EditProfileButton />

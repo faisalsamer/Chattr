@@ -35,7 +35,7 @@ const ActiveRippleLayer: React.FC<Props> = ({ title, detail }) => {
 
 
     return (
-        <button onClick={(e) => {
+        <button onMouseDown={(e) => {
             createRipple(e, false);
             copyToClipboard(title, detail);
         }}
